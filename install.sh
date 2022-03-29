@@ -10,7 +10,7 @@ ADDON_NAME="zul-reset-calculator"
 WOW_ADDON_DIR="${1}"
 
 # The local directory in this repository
-LOCAL_ADDON_DIR="${DIR}/src/${ADDON_NAME}"
+LOCAL_ADDON_DIR="${DIR}"
 
 # The addon directory inside the provided WoW addon folder
 INSTALL_DIR="${WOW_ADDON_DIR}/${ADDON_NAME}"
@@ -24,4 +24,6 @@ fi
 
 # Install the addon
 echo "Installing addon"
-cp -r "${LOCAL_ADDON_DIR}" "${INSTALL_DIR}"
+mkdir -p "${INSTALL_DIR}"
+cp "${LOCAL_ADDON_DIR}/zul-reset-calculator.lua" "${INSTALL_DIR}"
+cp "${LOCAL_ADDON_DIR}/zul-reset-calculator.toc" "${INSTALL_DIR}"
