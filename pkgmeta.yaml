@@ -1,0 +1,8 @@
+ignore:
+    - install.sh
+    - README.md
+  
+package-as: zul-reset-calculator
+
+move-folders:
+    src/zul-reset-calculator/: zul-reset-calculator
