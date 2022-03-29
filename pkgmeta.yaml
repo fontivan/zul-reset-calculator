@@ -3,8 +3,6 @@ ignore:
     - README.md
     - .gitignore
   
-package-as: zul-reset-calculator
-
 license-output: LICENSE.txt
 
 move-folders:
