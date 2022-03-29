@@ -1,8 +1,11 @@
 ignore:
     - install.sh
     - README.md
+    - .gitignore
   
 package-as: zul-reset-calculator
 
+license-output: LICENSE.txt
+
 move-folders:
-    src/zul-reset-calculator/: zul-reset-calculator
+    src/zul-reset-calculator: zul-reset-calculator
