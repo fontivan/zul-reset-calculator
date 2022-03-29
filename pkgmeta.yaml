@@ -4,6 +4,3 @@ ignore:
     - .gitignore
   
 license-output: LICENSE.txt
-
-move-folders:
-    src/zul-reset-calculator: zul-reset-calculator
