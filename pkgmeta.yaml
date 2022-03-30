@@ -2,7 +2,5 @@ ignore:
     - install.sh
     - README.md
     - .gitignore
-  
-license-output: LICENSE.txt
 
 manual-changelog: CHANGELOG.txt
