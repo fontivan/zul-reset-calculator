@@ -1,3 +1,18 @@
+v1.2.0
+- Add support for sending the output to a chat channel intead of just to your own chat window.
+  The following channels are supported:
+    - say (s, say, S, SAY)
+    - yell (y, yell, Y, YELL)
+    - party (p, party, P, PARTY)
+    - raid (r, raid, R, RAID)
+    - guild (g, guild, G, GUILD)
+- The chat channel and amount of resets requested can be specified in any order, e.g.
+  The following lines are all equivalent:
+    - /zul 5 guild
+    - /zul 5 GUILD
+    - /zul g 5
+    - /zul G 5
+
 v1.1.2
 - Fix license packaging
 - Updated some minor code comments

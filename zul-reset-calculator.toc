@@ -2,6 +2,6 @@
 ## Title: Zul Reset Calculator
 ## Notes: Calculate the upcoming Zul raid resets.
 ## Author: fontivan
-## Version: 1.1.2
+## Version: 1.2.0
 
 zul-reset-calculator.lua
