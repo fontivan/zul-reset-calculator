@@ -65,4 +65,5 @@ function ZulResetCalculator_PrintResets(count)
 	print(text_output)
 end
 
+-- Add the slash commands to the client's command list
 SlashCmdList["ZULRESETCALCULATOR"] = ZulResetCalculator_Commands
