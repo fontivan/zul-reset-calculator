@@ -22,10 +22,24 @@ function ZulResetCalculator_PrintResets(count)
 		count = 25
 	end
 
-	-- 28 March 2022 at 11AM EST (last reset as of writing)
-	local base_epoch = "1648479600"
+	-- 28 March 2022 at 1500 UTC (last reset as of writing)
+	local us_epoch = "1648479600"
+	-- 28 March 2022 at 0700 UTC (last reset as of writing)
+	local eu_epoch = "1648465200"
+
+	-- This will be used to check the region
+	local region = GetCVar("portal")
+	local base_epoch
+	-- US, Oceanic, and Latin America servers should all return US here
+	if region == "US" then
+		base_epoch = us_epoch
+	else
+		-- Assuming that EU/RU servers would return `EU` but can't check it without an active WoW EU subscription
+		base_epoch = eu_epoch
+	end
 
 	-- Will be used to compare versus base epoch
+	-- `time` and `date` are WoW APIs that mirror the lua standard os.time and os.date functions
 	local current_unix_epoch = time(date("!*t"))
 
 	-- constants for comparison
@@ -47,11 +61,7 @@ function ZulResetCalculator_PrintResets(count)
 		text_output = text_output .. chat_string
 	end
 
-	-- -- Print to chat box
-	-- local editbox=ChatEdit_ChooseBoxForSend(DEFAULT_CHAT_FRAME);
-	-- editBox:Show()
-	-- editBox:SetText(text_output)
-
+	-- Print the output to the chat box
 	print(text_output)
 end
 
