@@ -1,0 +1,26 @@
+v1.1.1
+- Added CHANGELOG.txt
+
+v1.1.0
+- Add support for EU reset time
+
+v1.0.6
+- Fix development script for testing the addon
+
+v1.0.5
+- Working on CurseForge packaging (attempt #5)
+
+v1.0.4
+- Working on CurseForge packaging (attempt #4)
+
+v1.0.3
+- Working on CurseForge packaging (attempt #3)
+
+v1.0.2
+- Working on CurseForge packaging (attempt #2)
+
+v1.0.1
+- Working on CurseForge packaging (attempt #1)
+
+v1.0.0
+- Initial release
