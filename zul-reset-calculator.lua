@@ -101,10 +101,11 @@ function ZulResetCalculator_GetResets(count)
 	if region == "US" then
 		base_epoch = us_epoch
 	elseif region == "EU" then
-		-- Checked on retail EU servers and confirmed they return "EU" jere
+		-- Checked on retail EU servers and confirmed they return "EU" here
 		base_epoch = eu_epoch
 	else
 		print("An error occured. Unknown game region :" .. region)
+		return
 	end
 
 	-- Will be used to compare versus base epoch
