@@ -25,5 +25,5 @@ fi
 # Install the addon
 echo "Installing addon"
 mkdir -p "${INSTALL_DIR}"
-cp "${LOCAL_ADDON_DIR}/zul-reset-calculator.lua" "${INSTALL_DIR}"
-cp "${LOCAL_ADDON_DIR}/zul-reset-calculator.toc" "${INSTALL_DIR}"
+cp "${LOCAL_ADDON_DIR}/${ADDON_NAME}.lua" "${INSTALL_DIR}"
+cp "${LOCAL_ADDON_DIR}/${ADDON_NAME}.toc" "${INSTALL_DIR}"

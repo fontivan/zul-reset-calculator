@@ -1,3 +1,6 @@
+v.1.2.1
+- Fixed the reset time for EU servers (for real this time)
+
 v1.2.0
 - Add support for sending the output to a chat channel intead of just to your own chat window.
   The following channels are supported:

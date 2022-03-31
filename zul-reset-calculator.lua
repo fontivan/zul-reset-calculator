@@ -92,17 +92,19 @@ function ZulResetCalculator_GetResets(count)
 	-- 28 March 2022 at 1500 UTC (last reset as of writing)
 	local us_epoch = "1648479600"
 	-- 28 March 2022 at 0700 UTC (last reset as of writing)
-	local eu_epoch = "1648465200"
+	local eu_epoch = "1648450800"
 
 	-- This will be used to check the region
 	local region = GetCVar("portal")
 	local base_epoch
-	-- US, Oceanic, and Latin America servers should all return US here
+	-- US, Oceanic, and Latin America servers should all return "US" here
 	if region == "US" then
 		base_epoch = us_epoch
-	else
-		-- Assuming that EU/RU servers would return `EU` but can't check it without an active WoW EU subscription
+	elseif region == "EU" then
+		-- Checked on retail EU servers and confirmed they return "EU" jere
 		base_epoch = eu_epoch
+	else
+		print("An error occured. Unknown game region :" .. region)
 	end
 
 	-- Will be used to compare versus base epoch
