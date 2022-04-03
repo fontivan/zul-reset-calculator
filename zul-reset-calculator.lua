@@ -65,7 +65,7 @@ function ZulResetCalculator:SendToChannel(count, channel)
 	channels['raid'] = "RAID"
 	channels['R'] = "RAID"
 	channels["RAID"] = "RAID"
-	
+
 	-- Guild
 	channels['g'] = "GUILD"
 	channels['guild'] = "GUILD"
@@ -79,7 +79,7 @@ function ZulResetCalculator:SendToChannel(count, channel)
 	channels["PARTY"] = "PARTY"
 
 	-- Send the output to the appropriate channel
-	local text_output = ZulResetCalculator.GetResets(_, count)	
+	local text_output = ZulResetCalculator.GetResets(_, count)
 	for i=1,count+1 do
 		if channel == nil or channel == "" or channels[channel] == nil then
 			print(text_output[i])
@@ -94,7 +94,8 @@ end
 -- Print the raid resets to the chat box
 function ZulResetCalculator:GetResets(count)
 
-	-- If count is very large then we will pretend it is not to prevent problems calculating e.g. the next 2 billion Zul raid resets
+	-- If count is very large then we will pretend it is not to prevent problems calculating 
+	-- e.g. the next 2 billion Zul raid resets
 	if count > 25 then
 		count = 25
 	end
@@ -151,5 +152,5 @@ function ZulResetCalculator:GetResets(count)
 end
 
 -- Add the slash commands to the client's command list
--- luzcheck: ignore SlashCmdList
+-- luacheck: ignore SlashCmdList
 SlashCmdList["ZULRESETCALCULATOR"] = ZulResetCalculator.Commands
