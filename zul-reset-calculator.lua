@@ -94,7 +94,7 @@ end
 -- Print the raid resets to the chat box
 function ZulResetCalculator:GetResets(count)
 
-	-- If count is very large then we will pretend it is not to prevent problems calculating 
+	-- If count is very large then we will pretend it is not to prevent problems calculating
 	-- e.g. the next 2 billion Zul raid resets
 	if count > 25 then
 		count = 25
