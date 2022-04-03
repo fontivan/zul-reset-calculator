@@ -13,36 +13,6 @@ SLASH_ZULRESETCALCULATOR3 = "/zulresetcalculator"
 
 local ZulResetCalculator = {};
 
--- Handler for processing the slash commands
-function ZulResetCalculator:Commands(msg)
-
-	-- Parse the first two arguments out of the message
-	local _, _, arg1, arg2 = string.find(msg, "%s?(%w+)%s?(.*)")
-
-	-- By default the count will be 3
-	local count = 3
-
-	-- By default the channel will be nil
-	local channel
-
-	-- Check if the first arg is either a number or a channel
-	if type(tonumber(arg1)) == "number" then
-		count = tonumber(arg1)
-	elseif type(arg1) == "string" then
-		channel = arg1
-	end
-
-	-- Check if the second arg is either a number or a channel
-	if type(tonumber(arg2)) == "number" then
-		count = tonumber(arg2)
-	elseif type(arg2) == "string" then
-		channel = arg2
-	end
-
-	ZulResetCalculator.SendToChannel(_, count, channel)
-
-end
-
 function ZulResetCalculator:SendToChannel(count, channel)
 
 	-- Obj used to store channel data
@@ -153,4 +123,32 @@ end
 
 -- Add the slash commands to the client's command list
 -- luacheck: ignore SlashCmdList
-SlashCmdList["ZULRESETCALCULATOR"] = ZulResetCalculator.Commands
+
+SlashCmdList["ZULRESETCALCULATOR"] = function (msg)
+
+	-- Parse the first two arguments out of the message
+	local _, _, arg1, arg2 = string.find(msg, "%s?(%w+)%s?(.*)")
+
+	-- By default the count will be 3
+	local count = 3
+
+	-- By default the channel will be nil
+	local channel
+
+	-- Check if the first arg is either a number or a channel
+	if type(tonumber(arg1)) == "number" then
+		count = tonumber(arg1)
+	elseif type(arg1) == "string" then
+		channel = arg1
+	end
+
+	-- Check if the second arg is either a number or a channel
+	if type(tonumber(arg2)) == "number" then
+		count = tonumber(arg2)
+	elseif type(arg2) == "string" then
+		channel = arg2
+	end
+
+	ZulResetCalculator.SendToChannel(_, count, channel)
+
+end
