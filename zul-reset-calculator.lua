@@ -1,11 +1,20 @@
 
--- Slash commands for the addon
+-- luacheck: ignore SLASH_ZULRESETCALCULATOR1
 SLASH_ZULRESETCALCULATOR1 = "/zul"
+
+-- luacheck: ignore SLASH_ZULRESETCALCULATOR2
 SLASH_ZULRESETCALCULATOR2 = "/zulreset"
+
+-- luacheck: ignore SLASH_ZULRESETCALCULATOR3
 SLASH_ZULRESETCALCULATOR3 = "/zulresetcalculator"
 
+-- luacheck: ignore _
+-- luacheck: ignore self
+
+local ZulResetCalculator = {};
+
 -- Handler for processing the slash commands
-local function ZulResetCalculator_Commands(msg)
+function ZulResetCalculator:Commands(msg)
 
 	-- Parse the first two arguments out of the message
 	local _, _, arg1, arg2 = string.find(msg, "%s?(%w+)%s?(.*)")
@@ -30,11 +39,11 @@ local function ZulResetCalculator_Commands(msg)
 		channel = arg2
 	end
 
-	ZulResetCalculator_SendToChannel(count, channel)
+	ZulResetCalculator.SendToChannel(_, count, channel)
 
 end
 
-function ZulResetCalculator_SendToChannel(count, channel)
+function ZulResetCalculator:SendToChannel(count, channel)
 
 	-- Obj used to store channel data
 	local channels = {};
@@ -70,11 +79,12 @@ function ZulResetCalculator_SendToChannel(count, channel)
 	channels["PARTY"] = "PARTY"
 
 	-- Send the output to the appropriate channel
-	local text_output = ZulResetCalculator_GetResets(count)	
+	local text_output = ZulResetCalculator.GetResets(_, count)	
 	for i=1,count+1 do
 		if channel == nil or channel == "" or channels[channel] == nil then
 			print(text_output[i])
 		else
+			-- luacheck: ignore SendChatMessage
 			SendChatMessage(text_output[i], channels[channel])
 		end
 	end
@@ -82,7 +92,7 @@ function ZulResetCalculator_SendToChannel(count, channel)
 end
 
 -- Print the raid resets to the chat box
-function ZulResetCalculator_GetResets(count)
+function ZulResetCalculator:GetResets(count)
 
 	-- If count is very large then we will pretend it is not to prevent problems calculating e.g. the next 2 billion Zul raid resets
 	if count > 25 then
@@ -95,6 +105,7 @@ function ZulResetCalculator_GetResets(count)
 	local eu_epoch = "1648450800"
 
 	-- This will be used to check the region
+	-- luacheck: ignore GetCVar
 	local region = GetCVar("portal")
 	local base_epoch
 	-- US, Oceanic, and Latin America servers should all return "US" here
@@ -110,7 +121,9 @@ function ZulResetCalculator_GetResets(count)
 
 	-- Will be used to compare versus base epoch
 	-- `time` and `date` are WoW APIs that mirror the lua standard os.time and os.date functions
+	-- luacheck: push ignore 113
 	local current_unix_epoch = time(date("!*t"))
+	-- luacheck: pop
 
 	-- constants for comparison
 	local seconds_per_day = 86400
@@ -126,6 +139,7 @@ function ZulResetCalculator_GetResets(count)
 	local text_output = {}
 	text_output[1] = "Upcoming Zul Resets:\n"
 	for i=1,count do
+		-- luacheck: ignore date
 		local next_date = date("%c", last_reset + i * seconds_per_reset)
 		local chat_string = string.format("Reset #%d: %s\n", i, next_date)
 		text_output[i+1] = chat_string
@@ -133,7 +147,9 @@ function ZulResetCalculator_GetResets(count)
 
 	-- Print the output to the chat box
 	return text_output
+
 end
 
 -- Add the slash commands to the client's command list
-SlashCmdList["ZULRESETCALCULATOR"] = ZulResetCalculator_Commands
+-- luzcheck: ignore SlashCmdList
+SlashCmdList["ZULRESETCALCULATOR"] = ZulResetCalculator.Commands
