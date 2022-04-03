@@ -133,20 +133,24 @@ SlashCmdList["ZULRESETCALCULATOR"] = function (msg)
 	local count = 3
 
 	-- By default the channel will be nil
-	local channel
-
-	-- Check if the first arg is either a number or a channel
-	if type(tonumber(arg1)) == "number" then
-		count = tonumber(arg1)
-	elseif type(arg1) == "string" then
-		channel = arg1
-	end
+	local channel = ""
 
 	-- Check if the second arg is either a number or a channel
-	if type(tonumber(arg2)) == "number" then
-		count = tonumber(arg2)
-	elseif type(arg2) == "string" then
-		channel = arg2
+	if not (arg2 == nil or arg2 == "") then
+		if type(tonumber(arg2)) == "number" then
+			count = tonumber(arg2)
+		else
+			channel = arg2
+		end
+	end
+
+	-- Check if the first arg is either a number or a channel
+	if not (arg1 == nil or arg1 == "") then
+		if type(tonumber(arg1)) == "number" then
+			count = tonumber(arg1)
+		else
+			channel = arg1
+		end
 	end
 
 	ZulResetCalculator.SendToChannel(_, count, channel)
