@@ -1,3 +1,6 @@
+v2.0.0
+- Revive addon and align with modern TOC configuration
+
 v1.2.3
 - Fixed an issue preventing the messages from going to the requested chat channel
 - Cleaned up internal lua code
