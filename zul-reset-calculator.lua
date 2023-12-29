@@ -8,6 +8,15 @@ SLASH_ZULRESETCALCULATOR2 = "/zulreset"
 -- luacheck: ignore SLASH_ZULRESETCALCULATOR3
 SLASH_ZULRESETCALCULATOR3 = "/zulresetcalculator"
 
+-- luacheck: ignore SLASH_ZULRESETCALCULATOR4
+SLASH_ZULRESETCALCULATOR4 = "/bfd"
+
+-- luacheck: ignore SLASH_ZULRESETCALCULATOR5
+SLASH_ZULRESETCALCULATOR5 = "/bfdreset"
+
+-- luacheck: ignore SLASH_ZULRESETCALCULATOR6
+SLASH_ZULRESETCALCULATOR6 = "/bfdresetcalculator"
+
 -- luacheck: ignore _
 -- luacheck: ignore self
 
