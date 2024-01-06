@@ -1,3 +1,5 @@
+package-as: zul-reset-calculator
+
 ignore:
     - install.sh
     - README.md
