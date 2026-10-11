@@ -37,7 +37,8 @@ fi
 
 WOW_ADDON_DIR="$1"
 if [[ ! -d "${WOW_ADDON_DIR}" ]]; then
-    echo "Error: WoW AddOns directory does not exist or is not a directory: ${WOW_ADDON_DIR}" >&2
+    printf 'Error: invalid WoW AddOns directory: %s\n' \
+        "${WOW_ADDON_DIR}" >&2
     exit 2
 fi
 

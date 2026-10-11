@@ -35,9 +35,11 @@ The Makefile provides the following checks:
 ```sh
 make syntax       # Parse Lua sources with luac
 make lint         # Run luacheck
+make shell-lint   # Run shellcheck and bashate
 make test         # Run the Lua behavior tests
 make diff-check   # Check the Git diff for whitespace errors
 ```
 
 Development requires Lua and `luac`; install `luacheck` separately to run the
-lint target.
+Lua lint target. Run `make venv` to create `.venv` and install `shellcheck-py`
+and `bashate`, then run `make shell-lint`.
