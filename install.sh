@@ -19,7 +19,7 @@ fi
 mkdir -p -- "$INSTALL_DIR"
 cp -- "${LOCAL_ADDON_DIR}/${ADDON_NAME}.lua" "$INSTALL_DIR/"
 
-for toc_suffix in Mainline Vanilla Mists WoWForever; do
+for toc_suffix in Mainline Vanilla Mists Forever; do
     cp -- "${LOCAL_ADDON_DIR}/${ADDON_NAME}_${toc_suffix}.toc" "$INSTALL_DIR/"
 done
 
