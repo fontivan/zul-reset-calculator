@@ -1,4 +1,4 @@
--- luacheck: globals SlashCmdList GetCVar time date print SendChatMessage
+-- luacheck: globals SlashCmdList GetCVar time date print SendChatMessage SLASH_ZULRESETCALCULATOR7
 
 local printed = {}
 local sent = {}
