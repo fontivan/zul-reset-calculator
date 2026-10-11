@@ -89,7 +89,8 @@ function ZulResetCalculator:GetResets(count)
 	local region = GetCVar("portal")
 	local base_epoch
 	-- US, Oceanic, and Latin America servers should all return "US" here
-	if region == "US" then
+	-- The Beta realms return "test" but are physically located in the US so we will treat them as such
+	if region == "US" or region == "test" then
 		base_epoch = us_epoch
 	elseif region == "EU" then
 		-- Checked on retail EU servers and confirmed they return "EU" here
