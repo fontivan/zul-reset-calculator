@@ -1,4 +1,4 @@
--- luacheck: globals SlashCmdList GetCVar time date print SendChatMessage
+-- luacheck: globals SlashCmdList GetCVar time date print SendChatMessage SLASH_ZULRESETCALCULATOR7
 
 local printed = {}
 local sent = {}
@@ -27,6 +27,8 @@ function SendChatMessage(message, channel)
 end
 
 dofile("zul-reset-calculator.lua")
+
+assert(SLASH_ZULRESETCALCULATOR7 == "/zrc", "zrc should be registered as a slash command")
 
 SlashCmdList.ZULRESETCALCULATOR("2")
 assert(#printed == 3, "default output should include a heading and two resets")

@@ -1,29 +1,78 @@
 #!/usr/bin/env bash
-
 set -euo pipefail
 
 ADDON_NAME="zul-reset-calculator"
-LOCAL_ADDON_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 
-if [[ $# -ne 1 || -z "$1" ]]; then
-    echo "Usage: $0 /path/to/World of Warcraft/Interface/AddOns" >&2
+usage() {
+    cat <<EOF
+Usage: $0 <WoW AddOns directory>
+
+Install ${ADDON_NAME} into an existing World of Warcraft AddOns directory.
+Example: $0 "\$HOME/Games/World of Warcraft/_classic_/Interface/AddOns"
+EOF
+}
+
+if [[ "${1-}" == "-h" || "${1-}" == "--help" ]]; then
+    if [[ "$#" -ne 1 ]]; then
+        echo "Error: help cannot be combined with other arguments." >&2
+        usage >&2
+        exit 2
+    fi
+    usage
+    exit 0
+fi
+
+if [[ "$#" -ne 1 ]]; then
+    echo "Error: expected exactly one WoW AddOns directory." >&2
+    usage >&2
+    exit 2
+fi
+
+if [[ "$1" == -* ]]; then
+    echo "Error: unknown option: $1" >&2
+    usage >&2
     exit 2
 fi
 
 WOW_ADDON_DIR="$1"
-INSTALL_DIR="${WOW_ADDON_DIR%/}/${ADDON_NAME}"
-if [[ "$WOW_ADDON_DIR" == "/" ]]; then
-    INSTALL_DIR="/${ADDON_NAME}"
+if [[ ! -d "${WOW_ADDON_DIR}" ]]; then
+    printf 'Error: invalid WoW AddOns directory: %s\n' \
+        "${WOW_ADDON_DIR}" >&2
+    exit 2
 fi
 
-mkdir -p -- "$INSTALL_DIR"
-cp -- "${LOCAL_ADDON_DIR}/${ADDON_NAME}.lua" "$INSTALL_DIR/"
+LOCAL_ADDON_DIR="${DIR}"
+INSTALL_DIR="${WOW_ADDON_DIR%/}/${ADDON_NAME}"
 
-for toc_suffix in Mainline Vanilla Mists WoWForever; do
-    cp -- "${LOCAL_ADDON_DIR}/${ADDON_NAME}_${toc_suffix}.toc" "$INSTALL_DIR/"
+TOC_SUFFIXES=(
+    "Mainline"
+    "Vanilla"
+    "Mists"
+    "Forever"
+)
+
+SOURCE_FILES=("${LOCAL_ADDON_DIR}/${ADDON_NAME}.lua")
+for TOC_SUFFIX in "${TOC_SUFFIXES[@]}"; do
+    SOURCE_FILES+=("${LOCAL_ADDON_DIR}/${ADDON_NAME}_${TOC_SUFFIX}.toc")
 done
 
-# Remove the old expansion TOC when upgrading an existing installation.
-rm -f -- "${INSTALL_DIR}/${ADDON_NAME}_Wrath.toc"
+for SOURCE_FILE in "${SOURCE_FILES[@]}"; do
+    if [[ ! -f "${SOURCE_FILE}" ]]; then
+        echo "Error: required addon file is missing: ${SOURCE_FILE}" >&2
+        exit 1
+    fi
+done
+
+if [[ -d "${INSTALL_DIR}" ]]; then
+    echo "Cleaning existing addon"
+    rm -r -- "${INSTALL_DIR}"
+fi
+
+echo "Installing addon"
+mkdir -p -- "${INSTALL_DIR}"
+for SOURCE_FILE in "${SOURCE_FILES[@]}"; do
+    cp -- "${SOURCE_FILE}" "${INSTALL_DIR}/"
+done
 
 echo "Installed ${ADDON_NAME} to ${INSTALL_DIR}"
