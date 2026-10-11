@@ -4,5 +4,7 @@ ignore:
     - install.sh
     - README.md
     - .gitignore
+    - Makefile
+    - tests.lua
 
 manual-changelog: CHANGELOG.txt
