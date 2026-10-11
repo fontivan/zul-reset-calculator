@@ -1,3 +1,5 @@
+-- luacheck: globals SlashCmdList GetCVar time date print SendChatMessage
+
 local printed = {}
 local sent = {}
 local region = "US"
