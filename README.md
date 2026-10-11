@@ -4,24 +4,23 @@ An addon for World of Warcraft to calculate resets for 3-day reset raids like Zu
 
 ## Installation
 
-### Install script
+The addon is available on CurseForge and can be installed with one click.
 
-Run the installation script with the game's `Interface/AddOns` directory:
+## Manual Installation
+
+Run `install.sh` with the path to an existing World of Warcraft `AddOns` directory:
 
 ```sh
-./install.sh "/path/to/World of Warcraft/_retail_/Interface/AddOns"
+./install.sh "$HOME/Games/World of Warcraft/_classic_/Interface/AddOns"
 ```
 
-Use the corresponding client directory for Classic Era (`_classic_era_`),
-Mists Classic (`_classic_`), or WoW Forever Beta. The script installs the addon
-Lua file and all supported TOC files into `zul-reset-calculator`.
+Use `./install.sh --help` to display usage. The script replaces the existing
+`zul-reset-calculator` addon folder in the destination.
 
-### Manual installation
-
-1. Create `zul-reset-calculator` inside the game's `Interface/AddOns` directory.
-2. Copy `zul-reset-calculator.lua` and the matching platform TOC file
-   (`_Mainline`, `_Vanilla`, `_Mists`, or `_WoWForever`) into that directory.
-3. Start or reload the game client.
+If you prefer to install manually instead, create `zul-reset-calculator` inside
+`Interface/AddOns`, copy `zul-reset-calculator.lua` and the matching platform TOC
+file (`_Mainline`, `_Vanilla`, `_Mists`, or `_WoWForever`) into that directory,
+and then start or reload the game client.
 
 ## Usage
 
