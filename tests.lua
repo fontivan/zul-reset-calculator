@@ -28,6 +28,8 @@ end
 
 dofile("zul-reset-calculator.lua")
 
+assert(SLASH_ZULRESETCALCULATOR7 == "/zrc", "zrc should be registered as a slash command")
+
 SlashCmdList.ZULRESETCALCULATOR("2")
 assert(#printed == 3, "default output should include a heading and two resets")
 assert(printed[1] == "Upcoming Zul Resets:\n")
