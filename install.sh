@@ -23,7 +23,4 @@ for toc_suffix in Mainline Vanilla Mists Forever; do
     cp -- "${LOCAL_ADDON_DIR}/${ADDON_NAME}_${toc_suffix}.toc" "$INSTALL_DIR/"
 done
 
-# Remove the old expansion TOC when upgrading an existing installation.
-rm -f -- "${INSTALL_DIR}/${ADDON_NAME}_Wrath.toc"
-
 echo "Installed ${ADDON_NAME} to ${INSTALL_DIR}"
