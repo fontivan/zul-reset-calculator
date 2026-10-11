@@ -1,0 +1,8 @@
+## Interface: 16001
+## Title: Zul Reset Calculator
+## Notes: Calculate the upcoming Zul raid resets.
+## Author: fontivan
+## Version: 3.0.0
+## X-Curse-Project-ID: 602130
+
+zul-reset-calculator.lua

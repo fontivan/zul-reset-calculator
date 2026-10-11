@@ -1,38 +1,29 @@
 #!/usr/bin/env bash
 
-# The current directory
-DIR="$( cd "$( dirname "$0" )" && pwd )"
+set -euo pipefail
 
-# The name of the addon
 ADDON_NAME="zul-reset-calculator"
+LOCAL_ADDON_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 
-# The path to the WoW addon directory you want to install to
-WOW_ADDON_DIR="${1}"
-
-# The local directory in this repository
-LOCAL_ADDON_DIR="${DIR}"
-
-# The addon directory inside the provided WoW addon folder
-INSTALL_DIR="${WOW_ADDON_DIR}/${ADDON_NAME}"
-
-# If the addon already exists then delete it
-if [[ -d "${INSTALL_DIR}" ]]
-then
-    echo "Cleaning existing addon"
-    rm -r "${INSTALL_DIR}"
+if [[ $# -ne 1 || -z "$1" ]]; then
+    echo "Usage: $0 /path/to/World of Warcraft/Interface/AddOns" >&2
+    exit 2
 fi
 
-# Install the addon
-echo "Installing addon"
-mkdir -p "${INSTALL_DIR}"
-cp "${LOCAL_ADDON_DIR}/${ADDON_NAME}.lua" "${INSTALL_DIR}"
+WOW_ADDON_DIR="$1"
+INSTALL_DIR="${WOW_ADDON_DIR%/}/${ADDON_NAME}"
+if [[ "$WOW_ADDON_DIR" == "/" ]]; then
+    INSTALL_DIR="/${ADDON_NAME}"
+fi
 
-TOC_FILES=(
-    "_Mainline"
-    "_Vanilla"
-    "_Wrath"
-)
+mkdir -p -- "$INSTALL_DIR"
+cp -- "${LOCAL_ADDON_DIR}/${ADDON_NAME}.lua" "$INSTALL_DIR/"
 
-for TOC_FILE_SUFFIX in ${TOC_FILES[@]}; do
-    cp "${LOCAL_ADDON_DIR}/${ADDON_NAME}${TOC_FILE_SUFFIX}.toc" "${INSTALL_DIR}"
+for toc_suffix in Mainline Vanilla Mists WoWForever; do
+    cp -- "${LOCAL_ADDON_DIR}/${ADDON_NAME}_${toc_suffix}.toc" "$INSTALL_DIR/"
 done
+
+# Remove the old expansion TOC when upgrading an existing installation.
+rm -f -- "${INSTALL_DIR}/${ADDON_NAME}_Wrath.toc"
+
+echo "Installed ${ADDON_NAME} to ${INSTALL_DIR}"

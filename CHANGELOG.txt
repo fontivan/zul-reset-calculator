@@ -1,3 +1,12 @@
+v3.0.0
+- Added an installation script and updated the README with manual installation and development instructions.
+- Added a development Makefile with syntax, lint, test, and diff-check targets.
+- Added a TOC for the WoW Forever Beta client.
+
+v2.0.1
+- Updated interface versions for Retail 12.1, Classic Era 1.15.9, and Mists Classic 5.5.4.
+- Replaced the obsolete Wrath TOC with a Mists Classic TOC.
+
 v2.0.0
 - Revive addon and align with modern TOC configuration
 
